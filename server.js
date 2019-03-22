@@ -1,6 +1,9 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
+const passport = require("passport");
+
+const users = require("./routes/api/users");
 
 const app = express()
 
@@ -14,6 +17,7 @@ app.use(
 app.use(bodyParser.json());
 // DB Config
 const db = require("./config/keys").mongoURI;
+
 // Connect to MongoDB
 mongoose
     .connect(
@@ -23,5 +27,7 @@ mongoose
     )
     .then(() => console.log("MongoDB successfully connected"))
     .catch(err => console.log(err));
+
+
 const port = 3000
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
